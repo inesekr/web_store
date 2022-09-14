@@ -1,0 +1,54 @@
+{
+    "products": [
+        {
+            "brand": "HP",
+            "model": "1",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "2",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "3",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "4",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "5",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "6",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "7",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "8",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "9",
+            "price": "600"
+        },
+        {
+            "brand": "HP",
+            "model": "10",
+            "price": "600"
+        }
+    ]
+}
