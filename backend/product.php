@@ -259,7 +259,7 @@ class Product
             $item = $csvContentLineArr[0];
             $price = $csvContentLineArr[1];
             $quantity = $csvContentLineArr[2];
-            $productObj = new Product($brand, $model, $price);
+            $productObj = new Product($item, $price, $quantity);
             array_push($productsArr, $productObj);
         endwhile;
         return json_encode(array("products"

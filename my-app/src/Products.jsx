@@ -17,8 +17,8 @@ class Products extends React.Component {
     }
 
     setPageShown = () => {
-        const startPos = (this.state.currentPage - 1) * 10;
-        let endPosit = startPos + 10;
+        const startPos = (this.state.currentPage - 1) * 9;
+        let endPosit = startPos + 9;
         if (endPosit + 1 > this.state.products.length)
             endPosit = this.state.products.length;
 
@@ -79,7 +79,6 @@ class Products extends React.Component {
 
         this.setState({ products: products, productToUpdate: productsToUpdateIds });
     }
-
 
     setProductTable(productsLoad) {
         const initProducts = [];
@@ -150,7 +149,6 @@ class Products extends React.Component {
         return pagesArr;
     }
 
-
     render() {
         return (
 
@@ -175,20 +173,53 @@ class Products extends React.Component {
                     </div>
                 }
 
+                {!(this.state.productsShown === undefined) && this.state.productsShown.map((product) => {
+                    return (
+                        // <div className="container px-4 px-lg-5">
+                        <div className="container">
+                            <div className="row">
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                                {/* <div className="row mt-4"> */}
+                                {/* <div className="col-md-4 ml-auto pricing-box align-self-center"> */}
+                                {/* <div className="col-sm-4"> */}
+                                <div className="col-lg-4">
+                                    {/* <div className="card mb-4"> */}
+                                    <div className="card" key={product.id} onChange={
+                                        (e) => this.onInputChange(e, product.id)}>
+                                        {/* <div className="card-body p-4 text-center"> */}
+                                        {/* <div className="card-body"> */}
+                                        {/* <h5 className="font-weight-normal">{product.item}</h5> */}
+                                        <div className="card-item">
+                                            <div hidden={this.state.editable}>
+                                                {product.item}
+                                            </div>
+                                            <input hidden={!this.state.editable}
+                                                fieldname="item"
+                                                defaultValue={product.item}></input>
+                                        </div>
+                                        <div className="card-price">
+                                            <div hidden={this.state.editable}>
+                                                <sup>€</sup><span className="text-dark display-5">{product.price}</span>
+                                            </div>
+                                            <input hidden={!this.state.editable}
+                                                fieldname="price"
+                                                defaultValue={product.price}></input>
+                                        </div>
+                                        {/* <sup>€</sup><span className="text-dark display-5">{product.price}</span> */}
+                                        <p className="mt-4">Here will come "add to cart" button</p>
 
-                        {
-                            !(this.state.productsShown === undefined) && this.state.productsShown.map((product) => {
-                                return (
+                                        {/* </div> */}
+                                    </div>
+                                </div>
+                                {/* </div> */}
+                                {/* </div> */}
+                                {/* </div> */}
+                            </div>
+                        </div>);
+                })}
+
+                {/* <table>
+                    <tbody>{                           
                                     <tr key={product.id} onChange={
                                         (e) => this.onInputChange(e, product.id)}>
                                         <td>
@@ -219,10 +250,10 @@ class Products extends React.Component {
                                 );
                             })
                         }
-
                     </tbody>
+                </table> */}
 
-                </table>
+
             </form>
         );
     }

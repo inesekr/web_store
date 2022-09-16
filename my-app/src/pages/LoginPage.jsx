@@ -32,7 +32,6 @@ function LoginPage() {
                 <Register></Register>}
         </div>
     )
-
 }
 
 export default LoginPage;

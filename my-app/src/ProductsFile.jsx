@@ -25,7 +25,6 @@ class ProductsFile extends React.Component {
             <Products productsInit={this.productsInit} allNew={true}></Products>
         )
     }
-
 }
 
 export default ProductsFile

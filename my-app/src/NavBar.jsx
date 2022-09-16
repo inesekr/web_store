@@ -38,7 +38,6 @@ function NavBar() {
             <Outlet></Outlet>
         </>
     )
-
 }
 
 export default NavBar;

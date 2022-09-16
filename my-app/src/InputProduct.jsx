@@ -50,7 +50,6 @@ class InputProduct extends React.Component {
                     <input id="price"
                         fieldname="price" value={this.state.price}
                         onChange={this.onPriceChange}></input>
-
                     <label htmlFor="quantity">Quantity</label>
                     <input id="quantity"
                         fieldname="quantity" value={this.state.quantity}
@@ -58,7 +57,6 @@ class InputProduct extends React.Component {
                     <button className="btn btn-primary">Save</button>
                 </div>
             </form>
-
         );
     }
 }

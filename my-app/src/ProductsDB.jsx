@@ -22,7 +22,6 @@ class ProductsDB extends React.Component {
             <Products productsInit={this.productsInit}></Products>
         )
     }
-
 }
 
 export default ProductsDB;

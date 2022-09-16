@@ -7,7 +7,6 @@ import LoadPage from './pages/LoadPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 
-
 class App extends React.Component {
 
   constructor() {

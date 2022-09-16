@@ -27,7 +27,6 @@ function Login() {
                 }
             })
         })
-
         event.preventDefault();
     }
 
@@ -54,7 +53,6 @@ function Login() {
             </form>
         </div>
     )
-
 }
 
 export default Login;
