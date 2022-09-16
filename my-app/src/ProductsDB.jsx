@@ -5,6 +5,7 @@ class ProductsDB extends React.Component {
 
     productsInit = (me) => {
         const self = me;
+
         fetch("http://localhost/Accenture_final_web_store/backend/products.php", {
             method: "GET"
         }).then(function (response) {

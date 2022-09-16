@@ -5,9 +5,9 @@ class InputProduct extends React.Component {
     constructor() {
         super();
         this.state = {
-            brand: "",
-            model: "",
-            price: ""
+            item: "",
+            price: "",
+            quantity: ""
         }
     }
 
@@ -26,35 +26,35 @@ class InputProduct extends React.Component {
         })
     }
 
-    onBrandChange = (event) => {
-        this.setState({ brand: event.target.value });
-    }
-
-    onModelChange = (event) => {
-        this.setState({ model: event.target.value });
+    onItemChange = (event) => {
+        this.setState({ item: event.target.value });
     }
 
     onPriceChange = (event) => {
         this.setState({ price: event.target.value });
+    }
+
+    onQuantityChange = (event) => {
+        this.setState({ quantity: event.target.value });
     }
     render() {
         return (
 
             <form onSubmit={this.onSave}>
                 <div className="form-group">
-                    <label htmlFor="brand">Brand</label>
-                    <input id="brand"
-                        fieldname="brand" value={this.state.brand}
-                        onChange={this.onBrandChange}></input>
-                    <label htmlFor="model">Model</label>
-                    <input id="model"
-                        fieldname="model" value={this.state.model}
-                        onChange={this.onModelChange}></input>
-
+                    <label htmlFor="item">Item</label>
+                    <input id="item"
+                        fieldname="item" value={this.state.item}
+                        onChange={this.onItemChange}></input>
                     <label htmlFor="price">Price</label>
                     <input id="price"
                         fieldname="price" value={this.state.price}
                         onChange={this.onPriceChange}></input>
+
+                    <label htmlFor="quantity">Quantity</label>
+                    <input id="quantity"
+                        fieldname="quantity" value={this.state.quantity}
+                        onChange={this.onQuantityChange}></input>
                     <button className="btn btn-primary">Save</button>
                 </div>
             </form>

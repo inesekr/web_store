@@ -179,9 +179,9 @@ class Products extends React.Component {
                 <table>
                     <thead>
                         <tr>
-                            <th>Brand</th>
-                            <th>Model</th>
+                            <th>Item</th>
                             <th>Price</th>
+                            <th>Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -193,19 +193,11 @@ class Products extends React.Component {
                                         (e) => this.onInputChange(e, product.id)}>
                                         <td>
                                             <div hidden={this.state.editable}>
-                                                {product.brand}
+                                                {product.item}
                                             </div>
                                             <input hidden={!this.state.editable}
-                                                fieldname="brand"
-                                                defaultValue={product.brand}></input>
-                                        </td>
-                                        <td>
-                                            <div hidden={this.state.editable}>
-                                                {product.model}
-                                            </div>
-                                            <input hidden={!this.state.editable}
-                                                fieldname="model"
-                                                defaultValue={product.model}></input>
+                                                fieldname="item"
+                                                defaultValue={product.item}></input>
                                         </td>
                                         <td>
                                             <div hidden={this.state.editable}>
@@ -214,6 +206,14 @@ class Products extends React.Component {
                                             <input hidden={!this.state.editable}
                                                 fieldname="price"
                                                 defaultValue={product.price}></input>
+                                        </td>
+                                        <td>
+                                            <div hidden={this.state.editable}>
+                                                {product.quantity}
+                                            </div>
+                                            <input hidden={!this.state.editable}
+                                                fieldname="quantity"
+                                                defaultValue={product.quantity}></input>
                                         </td>
                                     </tr>
                                 );

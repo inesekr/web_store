@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . "\..\utils.php");
+// require(__DIR__ . "\..\utils.php");
 require("Controllers/ProductController.php");
 
 use App\Controllers\ProductController;

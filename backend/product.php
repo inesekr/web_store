@@ -5,15 +5,16 @@ include("utils.php");
 
 class Product
 {
-    protected string $brand, $model, $price;
+    protected string $item;
+    protected int $price, $quantity;
     protected int $id;
     protected mysqli $con;
 
-    public function __construct($brand, $model, $price, $id = 0)
+    public function __construct($item, $price, $quantity, $id = 0)
     {
-        $this->brand = $brand;
-        $this->model = $model;
+        $this->item = $item;
         $this->price = $price;
+        $this->quantity = $quantity;
         $this->id = $id;
         $this->con = connectToDB();
     }
@@ -22,9 +23,9 @@ class Product
     {
         return [
             "id" => $this->id,
-            "brand" => $this->brand,
-            "model" => $this->model,
-            "price" => $this->price
+            "item" => $this->item,
+            "price" => $this->price,
+            "quantity" => $this->quantity
         ];
     }
 
@@ -33,19 +34,19 @@ class Product
         return $this->id;
     }
 
-    public function getBrand(): string
+    public function getItem(): string
     {
-        return $this->brand;
-    }
-
-    public function getModel(): string
-    {
-        return $this->model;
+        return $this->item;
     }
 
     public function getPrice(): string
     {
         return $this->price;
+    }
+
+    public function getQuantity(): string
+    {
+        return $this->quantity;
     }
 
     public static function selectProducts(mysqli $con = null, int $id = null): array
@@ -64,9 +65,9 @@ class Product
 
         while ($entry = $result->fetch_assoc()) :
             $product = new Product(
-                $entry["brand"],
-                $entry["model"],
+                $entry["item"],
                 $entry["price"],
+                $entry["quantity"],
                 $entry["id"]
             );
             array_push($products, $product);
@@ -89,13 +90,13 @@ class Product
             $con = connectToDB();
         endif;
 
-        $prepStament = $con->prepare("INSERT INTO products(brand,model,price) VALUES
+        $prepStament = $con->prepare("INSERT INTO products(item,price,quantity) VALUES
         (?,?,?)");
         $prepStament->bind_param(
             "sss",
-            $product->brand,
-            $product->model,
-            $product->price
+            $product->item,
+            $product->price,
+            $product->quantity
         );
         $prepStament->execute();
     }
@@ -112,14 +113,14 @@ class Product
 
     public function updateProduct(mysqli $con = null)
     {
-        $prepStament = $con->prepare("UPDATE products SET brand=?,
-        model=?,
-        price=? WHERE id=?");
+        $prepStament = $con->prepare("UPDATE products SET item=?,
+        price=?,
+        quantity=? WHERE id=?");
         $prepStament->bind_param(
             "ssss",
-            $this->brand,
-            $this->model,
+            $this->item,
             $this->price,
+            $this->quantity,
             $this->id
         );
         $prepStament->execute();
@@ -143,13 +144,13 @@ class Product
             "<b>
         <div class='row'>
             <div class='col'>
-                Brand
+                Item
             </div>
             <div class='col'>
-                Model
+                Price
             </div>
             <div class='col'>
-               Price
+               Quantity
             </div>
         </div>
     </b>";
@@ -163,11 +164,11 @@ class Product
     public function getProductRow()
     {
         return "<div class='row'>
-                <div class='col'>" . $this->brand .
-            "</div>
-                <div class='col'>" . $this->model .
+                <div class='col'>" . $this->item .
             "</div>
                 <div class='col'>" . $this->price .
+            "</div>
+                <div class='col'>" . $this->quantity .
             "</div>
             </div>";
     }
@@ -188,9 +189,9 @@ class Product
     public static function convertFromJSONToProduct($product): Product
     {
         return new Product(
-            $product->brand,
-            $product->model,
+            $product->item,
             $product->price,
+            $product->quantity,
             $product->id
         );
     }
@@ -198,9 +199,9 @@ class Product
     public function convertToJSON()
     {
         $product = new stdClass();
-        $product->brand = $this->brand;
-        $product->model = $this->model;
+        $product->item = $this->item;
         $product->price = $this->price;
+        $product->quantity = $this->quantity;
         return $product;
     }
 
@@ -233,10 +234,10 @@ class Product
         $productsArr = [];
         $products = $xmlDoc->documentElement->getElementsByTagName("product"); //root element
         foreach ($products as $product) :
-            $brand =  $product->getElementsByTagName("brand")->item(0)->nodeValue;
-            $model = $product->getElementsByTagName("model")->item(0)->nodeValue;
+            $item =  $product->getElementsByTagName("item")->item(0)->nodeValue;
             $price = $product->getElementsByTagName("price")->item(0)->nodeValue;
-            $productObj = new Product($brand, $model, $price);
+            $quantity = $product->getElementsByTagName("quantity")->item(0)->nodeValue;
+            $productObj = new Product($item, $price, $quantity);
             array_push($productsArr, $productObj);
         endforeach;
         return json_encode(array("products"
@@ -255,9 +256,9 @@ class Product
         $csvContentLineArr = fgetcsv($file, filesize($filename), ";");
 
         while ($csvContentLineArr = fgetcsv($file, filesize($filename), ";")) :
-            $brand = $csvContentLineArr[0];
-            $model = $csvContentLineArr[1];
-            $price = $csvContentLineArr[2];
+            $item = $csvContentLineArr[0];
+            $price = $csvContentLineArr[1];
+            $quantity = $csvContentLineArr[2];
             $productObj = new Product($brand, $model, $price);
             array_push($productsArr, $productObj);
         endwhile;

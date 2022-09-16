@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+require("Model.php");
+
 use App\Controllers\Model;
 use DOMDocument;
 use mysqli;

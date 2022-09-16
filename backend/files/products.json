@@ -1,54 +1,54 @@
 {
     "products": [
         {
-            "brand": "HP",
-            "model": "1",
-            "price": "600"
+            "item": "HP1",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "2",
-            "price": "600"
+            "item": "HP2",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "3",
-            "price": "600"
+            "item": "HP3",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "4",
-            "price": "600"
+            "item": "HP4",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "5",
-            "price": "600"
+            "item": "HP5",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "6",
-            "price": "600"
+            "item": "HP6",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "7",
-            "price": "600"
+            "item": "HP7",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "8",
-            "price": "600"
+            "item": "HP8",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "9",
-            "price": "600"
+            "item": "HP9",
+            "price": "600",
+            "quantity": "3"
         },
         {
-            "brand": "HP",
-            "model": "10",
-            "price": "600"
+            "item": "HP10",
+            "price": "600",
+            "quantity": "3"
         }
     ]
 }
