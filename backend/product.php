@@ -7,14 +7,16 @@ class Product
 {
     protected string $item;
     protected int $price, $quantity;
+    protected string $picturefile;
     protected int $id;
     protected mysqli $con;
 
-    public function __construct($item, $price, $quantity, $id = 0)
+    public function __construct($item, $price, $quantity, $picturefile, $id = 0)
     {
         $this->item = $item;
         $this->price = $price;
         $this->quantity = $quantity;
+        $this->picturefile = $picturefile;
         $this->id = $id;
         $this->con = connectToDB();
     }
@@ -25,7 +27,8 @@ class Product
             "id" => $this->id,
             "item" => $this->item,
             "price" => $this->price,
-            "quantity" => $this->quantity
+            "quantity" => $this->quantity,
+            "picturefile" => $this->picturefile
         ];
     }
 
@@ -49,6 +52,11 @@ class Product
         return $this->quantity;
     }
 
+    public function getPicturefile(): string
+    {
+        return $this->picturefile;
+    }
+
     public static function selectProducts(mysqli $con = null, int $id = null): array
     {
         if ($con === null) :
@@ -68,6 +76,7 @@ class Product
                 $entry["item"],
                 $entry["price"],
                 $entry["quantity"],
+                $entry["picturefile"],
                 $entry["id"]
             );
             array_push($products, $product);
@@ -90,13 +99,14 @@ class Product
             $con = connectToDB();
         endif;
 
-        $prepStament = $con->prepare("INSERT INTO products(item,price,quantity) VALUES
-        (?,?,?)");
+        $prepStament = $con->prepare("INSERT INTO products(item,price,quantity,picturefile) VALUES
+        (?,?,?,?)");
         $prepStament->bind_param(
-            "sss",
+            "ssss",
             $product->item,
             $product->price,
-            $product->quantity
+            $product->quantity,
+            $product->picturefile
         );
         $prepStament->execute();
     }
@@ -115,12 +125,14 @@ class Product
     {
         $prepStament = $con->prepare("UPDATE products SET item=?,
         price=?,
-        quantity=? WHERE id=?");
+        quantity=?,
+        picturefile=? WHERE id=?");
         $prepStament->bind_param(
-            "ssss",
+            "sssss",
             $this->item,
             $this->price,
             $this->quantity,
+            $this->picturefile,
             $this->id
         );
         $prepStament->execute();
@@ -152,6 +164,9 @@ class Product
             <div class='col'>
                Quantity
             </div>
+            <div class='col'>
+            Picturefile
+            </div>
         </div>
     </b>";
 
@@ -169,6 +184,8 @@ class Product
                 <div class='col'>" . $this->price .
             "</div>
                 <div class='col'>" . $this->quantity .
+            "</div>
+                <div class='col'>" . $this->picturefile .
             "</div>
             </div>";
     }
@@ -192,6 +209,7 @@ class Product
             $product->item,
             $product->price,
             $product->quantity,
+            $product->picturefile,
             $product->id
         );
     }
@@ -202,6 +220,7 @@ class Product
         $product->item = $this->item;
         $product->price = $this->price;
         $product->quantity = $this->quantity;
+        $product->picturefile = $this->picturefile;
         return $product;
     }
 
@@ -237,7 +256,8 @@ class Product
             $item =  $product->getElementsByTagName("item")->item(0)->nodeValue;
             $price = $product->getElementsByTagName("price")->item(0)->nodeValue;
             $quantity = $product->getElementsByTagName("quantity")->item(0)->nodeValue;
-            $productObj = new Product($item, $price, $quantity);
+            $picturefile = $product->getElementsByTagName("picturefile")->item(0)->nodeValue;
+            $productObj = new Product($item, $price, $quantity, $picturefile);
             array_push($productsArr, $productObj);
         endforeach;
         return json_encode(array("products"
@@ -259,7 +279,8 @@ class Product
             $item = $csvContentLineArr[0];
             $price = $csvContentLineArr[1];
             $quantity = $csvContentLineArr[2];
-            $productObj = new Product($item, $price, $quantity);
+            $picturefile = $csvContentLineArr[3];
+            $productObj = new Product($item, $price, $quantity, $picturefile);
             array_push($productsArr, $productObj);
         endwhile;
         return json_encode(array("products"

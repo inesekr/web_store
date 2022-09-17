@@ -54,6 +54,10 @@ class InputProduct extends React.Component {
                     <input id="quantity"
                         fieldname="quantity" value={this.state.quantity}
                         onChange={this.onQuantityChange}></input>
+                    <label htmlFor="picturefile">Picture File</label>
+                    <input id="picturefile"
+                        fieldname="picturefile" value={this.state.picturefile}
+                        onChange={this.onPicturefileChange}></input>
                     <button className="btn btn-primary">Save</button>
                 </div>
             </form>

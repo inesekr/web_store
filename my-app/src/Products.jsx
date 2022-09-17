@@ -175,13 +175,10 @@ class Products extends React.Component {
 
                 <div className="products">
                     {!(this.state.productsShown === undefined) && this.state.productsShown.map((product) => {
-
                         return (
-
                             <div key={product.id} onChange={
                                 (e) => this.onInputChange(e, product.id)}>
                                 {/* <div className="card-body p-4 text-center"> */}
-
                                 {/* <h5 className="font-weight-normal">{product.item}</h5> */}
                                 <div className="card-item">
                                     <div hidden={this.state.editable}>
@@ -193,13 +190,29 @@ class Products extends React.Component {
                                 </div>
                                 <div className="card-price">
                                     <div hidden={this.state.editable}>
-                                        <sup>€</sup><span className="text-dark display-5">{product.price}</span>
+                                        <sup>€</sup><span className="text-dark display-5
+                                        ">{product.price}</span>
                                     </div>
                                     <input hidden={!this.state.editable}
                                         fieldname="price"
                                         defaultValue={product.price}></input>
                                 </div>
-                                {/* <sup>€</sup><span className="text-dark display-5">{product.price}</span> */}
+
+
+                                {/* <div >
+                                    <div hidden={this.state.editable}>
+                                        <div>{product.picturefile}</div>
+                                    </div>
+                                    <input hidden={!this.state.editable}
+                                        fieldname="picturefile"
+                                        defaultValue={product.picturefile}></input>
+                                </div> */}
+
+                                <img src={product.picturefile} width="200" height="200" />
+
+
+
+
                                 <p className="mt-4">Here will come "add to cart" button</p>
                             </div>
                         )
