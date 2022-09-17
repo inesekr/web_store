@@ -176,11 +176,11 @@ class Products extends React.Component {
                 <div className="products">
                     {!(this.state.productsShown === undefined) && this.state.productsShown.map((product) => {
                         return (
-                            <div key={product.id} onChange={
+                            <div className="card" key={product.id} onChange={
                                 (e) => this.onInputChange(e, product.id)}>
                                 {/* <div className="card-body p-4 text-center"> */}
                                 {/* <h5 className="font-weight-normal">{product.item}</h5> */}
-                                <div className="card-item">
+                                <div className="card-title">
                                     <div hidden={this.state.editable}>
                                         <h4>{product.item}</h4>
                                     </div>
@@ -198,20 +198,16 @@ class Products extends React.Component {
                                         defaultValue={product.price}></input>
                                 </div>
 
-
-                                {/* <div >
-                                    <div hidden={this.state.editable}>
-                                        <div>{product.picturefile}</div>
-                                    </div>
+                                <div className="card-text">
+                                    {/* <div hidden={!this.state.editable}>
+                                        <p>{product.picturefile}</p>
+                                    </div> */}
                                     <input hidden={!this.state.editable}
                                         fieldname="picturefile"
                                         defaultValue={product.picturefile}></input>
-                                </div> */}
+                                </div>
 
                                 <img src={product.picturefile} width="200" height="200" />
-
-
-
 
                                 <p className="mt-4">Here will come "add to cart" button</p>
                             </div>

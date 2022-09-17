@@ -37,6 +37,11 @@ class InputProduct extends React.Component {
     onQuantityChange = (event) => {
         this.setState({ quantity: event.target.value });
     }
+
+    onPicturefileChange = (event) => {
+        this.setState({ picturefile: event.target.value });
+    }
+
     render() {
         return (
 
