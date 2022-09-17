@@ -7,9 +7,13 @@ class InputProduct extends React.Component {
         this.state = {
             item: "",
             price: "",
-            quantity: ""
+            quantity: "",
+            picturefile: "",
+            user: JSON.parse(sessionStorage.getItem("user"))
         }
     }
+
+
 
     onSave = (event) => {
         let self = this;
@@ -46,28 +50,33 @@ class InputProduct extends React.Component {
         return (
 
             <form onSubmit={this.onSave}>
-                <div className="form-group">
-                    <label htmlFor="item">Item</label>
-                    <input id="item"
-                        fieldname="item" value={this.state.item}
-                        onChange={this.onItemChange}></input>
-                    <label htmlFor="price">Price</label>
-                    <input id="price"
-                        fieldname="price" value={this.state.price}
-                        onChange={this.onPriceChange}></input>
-                    <label htmlFor="quantity">Quantity</label>
-                    <input id="quantity"
-                        fieldname="quantity" value={this.state.quantity}
-                        onChange={this.onQuantityChange}></input>
-                    <label htmlFor="picturefile">Picture File</label>
-                    <input id="picturefile"
-                        fieldname="picturefile" value={this.state.picturefile}
-                        onChange={this.onPicturefileChange}></input>
-                    <button className="btn btn-primary">Save</button>
-                </div>
+                {
+                    this.state.user.roleID === 1 &&
+                    <div className="form-group">
+                        <label htmlFor="item">Item</label>
+                        <input id="item"
+                            fieldname="item" value={this.state.item}
+                            onChange={this.onItemChange}></input>
+                        <label htmlFor="price">Price</label>
+                        <input id="price"
+                            fieldname="price" value={this.state.price}
+                            onChange={this.onPriceChange}></input>
+                        <label htmlFor="quantity">Quantity</label>
+                        <input id="quantity"
+                            fieldname="quantity" value={this.state.quantity}
+                            onChange={this.onQuantityChange}></input>
+                        <label htmlFor="picturefile">Picture File</label>
+                        <input id="picturefile"
+                            fieldname="picturefile" value={this.state.picturefile}
+                            onChange={this.onPicturefileChange}></input>
+                        <button className="btn btn-primary">Save</button>
+                    </div>
+                }
             </form>
         );
     }
 }
+
+
 
 export default InputProduct;

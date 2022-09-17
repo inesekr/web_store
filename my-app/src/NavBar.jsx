@@ -4,6 +4,12 @@ import { Link, Outlet } from "react-router-dom";
 // function NavBar({ openPage }) {
 function NavBar() {
 
+
+    //     this.state = {
+    //         user: JSON.parse(sessionStorage.getItem("user"))
+    // }
+
+
     const [currentPage, setCurrentPage] = useState(window.location.pathname);
 
     const onLogout = () => {
@@ -20,12 +26,15 @@ function NavBar() {
                             <Link to="/" onClick={() => { setCurrentPage("/") }}>Home</Link>
                             {/* <button className="btn" onClick={() => openPage("HomePage")}>Home</button> */}
                         </li>
+
                         <li className={currentPage === "/loadPage" ? "nav-item nav-item-active" : "nav-item"}>
+                            {/* {this.state.user.roleID === 1 && */}
                             <Link to="/loadPage" onClick={() => { setCurrentPage("/loadPage") }}>Load Page</Link>
-                            {/* <button className="btn" onClick={() => openPage("LoadPage")}>Load from file</button> */}
                         </li>
+
                     </ul>
                 </div>
+
                 <ul className="nav navbar-nav nav-list navbar-right mr-auto">
                     <li className="username">
                         <a>{JSON.parse(sessionStorage.getItem("user")).username}</a>
@@ -33,6 +42,11 @@ function NavBar() {
                     <li className="nav-item">
                         <a className="press" onClick={onLogout}>Logout</a>
                     </li>
+                    <div className="nav-item">
+                        {JSON.parse(sessionStorage.getItem("user")).roleID === 3 &&
+                            <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}>Basket</Link>
+                        }
+                    </div>
                 </ul>
             </nav>
             <Outlet></Outlet>

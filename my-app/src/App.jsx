@@ -30,7 +30,11 @@ class App extends React.Component {
             <Routes>
               <Route path='/' element={<NavBar></NavBar>}>
                 <Route index element={<HomePage></HomePage>}></Route>
+
+                {/* 
+                {JSON.parse(sessionStorage.getItem("user")).roleID === 1 && */}
                 <Route path='loadPage' element={<LoadPage></LoadPage>}></Route>
+
               </Route>
             </Routes>
           </BrowserRouter>

@@ -5,7 +5,9 @@ function HomePage() {
 
     return (
         <div>
+
             <InputProduct></InputProduct>
+
             <ProductsDB></ProductsDB>
         </div>
     );
