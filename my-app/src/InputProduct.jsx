@@ -13,8 +13,6 @@ class InputProduct extends React.Component {
         }
     }
 
-
-
     onSave = (event) => {
         let self = this;
         const headers = new Headers();

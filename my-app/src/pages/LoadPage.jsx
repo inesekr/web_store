@@ -8,8 +8,8 @@ class LoadPage extends React.Component {
         this.state = {
             filename: "",
             filepath: "",
-            load: false
-            // user: JSON.parse(sessionStorage.getItem("user"))
+            load: false,
+            user: JSON.parse(sessionStorage.getItem("user"))
         }
     }
 
@@ -22,19 +22,21 @@ class LoadPage extends React.Component {
         return (
 
             < div >
-                {/* {JSON.parse(sessionStorage.getItem("user")).roleID === 1 && */}
-                <form >
+                {
+                    this.state.user.roleID === 1 &&
+                    <form >
 
-                    <input type="file" value={this.state.filepath}
-                        onChange={this.onFileNameChange}></input>
+                        <input type="file" value={this.state.filepath}
+                            onChange={this.onFileNameChange}></input>
 
-                    <button className='btn' onClick={() => { this.setState({ load: true }) }}>Load</button>
+                        <button className='btn' onClick={() => { this.setState({ load: true }) }}>Load</button>
 
-                    {this.state.load === true && <ProductsFile filename={this.state.filename}></ProductsFile>}
+                        {this.state.load === true && <ProductsFile filename={this.state.filename}></ProductsFile>}
 
-                </form>
-
+                    </form>
+                }
             </div >
+
         )
     }
 }

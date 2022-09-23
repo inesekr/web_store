@@ -83,6 +83,7 @@ function Register() {
                 </div>
 
                 <div className="form-outline mb-4">
+
                     <select id="userGroup" onChange={(event) => {
                         setUserGroup(event.target.value)
                     }}>

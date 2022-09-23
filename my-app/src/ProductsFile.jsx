@@ -27,4 +27,4 @@ class ProductsFile extends React.Component {
     }
 }
 
-export default ProductsFile
+export default ProductsFile;
