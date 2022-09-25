@@ -154,21 +154,11 @@ class Products extends React.Component {
         return pagesArr;
     }
 
-
-    // onAddProduct = (event) => {
-    // console.log(event);
-
-
     onAddProduct = (productid) => {
-        // const id = event.target.getAttribute("productid");
-        // console.log(productid);
+
         const id = productid;
-        // const [products, setProducts] = useState(this.state.products);
 
         const products = this.state.products;
-
-        // const products = useState(this.state.products);
-        console.log(products);
 
         let basket = JSON.parse(sessionStorage.getItem("basket"));
         if (basket === null) {
@@ -182,46 +172,29 @@ class Products extends React.Component {
             return product.id === id;
         })
 
-        // const [products, setProducts] = this.state.products;
+        let quantity = product.quantity;
+        quantity--
 
         if (productInBasket === undefined) {
 
             const item = product.item;
-
             const price = product.price;
 
-            productInBasket = { id: id, item: item, price: price, quantityInBasket: 1 };
+            productInBasket = { id: id, item: item, price: price, quantityInBasket: 1, quantity: quantity };
             basket.push(productInBasket);
         }
         else {
             productInBasket.quantityInBasket++;
+
         }
-
-        let quantity = product.quantity;
-
-        quantity--;
-        console.log(quantity);
-
-        // this.setState({
-        //     quantity: quantity
-        // })
 
         product.quantity = quantity;
 
-        console.log(product.quantity);
-
-        // const productsUpdated = [...products];
-
+        // console.log(product.quantity);
 
         this.setState({
             products: this.state.products
         });
-
-        // this.setState({
-        //     products: productsUpdated
-        // });
-
-        // setProducts(productsUpdated);
 
         sessionStorage.setItem("basket", JSON.stringify(basket));
         sessionStorage.setItem("products", JSON.stringify(this.state.products));
@@ -295,11 +268,6 @@ class Products extends React.Component {
 
                                 <img src={product.picturefile} width="200" height="200" />
 
-                                {/* <button productid={product.id} className="btn btn-dark" onClick={this.onAddProduct} type="button">Add to Cart</button> */}
-
-                                {/* <button productid={product.id} className='btn' onClick={(event) => this.onAddProduct(event)} type="button">
-                                    Add to Cart
-                                </button> */}
                                 <div productid={product.id}>
                                     <button className='btn' onClick={(productid) => this.onAddProduct(product.id)} type="button">
                                         Add to Cart

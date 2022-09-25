@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 import { Basket } from "./Basket";
 // function NavBar({ openPage }) {
 function NavBar() {
@@ -35,15 +38,19 @@ function NavBar() {
                 </div>
 
                 <ul className="nav navbar-nav nav-list navbar-right mr-auto">
-                    <li className="username">
-                        <a>{JSON.parse(sessionStorage.getItem("user")).username}</a>
-                    </li>
+                    <button className="user">
+                        <li className="username">
+                            <a>{JSON.parse(sessionStorage.getItem("user")).username}</a>
+                        </li>
+                    </button>
                     <li className="nav-item">
                         <a className="press" onClick={onLogout}>Logout</a>
                     </li>
-                    <div className="nav-item">
-                        <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}>Basket</Link>
-                    </div>
+                    <button className="nav-item">
+                        <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}><FontAwesomeIcon icon={faBasketShopping} /></Link>
+                    </button>
+
+
 
                 </ul>
             </nav>
