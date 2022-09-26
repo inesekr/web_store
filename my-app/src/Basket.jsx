@@ -46,6 +46,11 @@ function Basket() {
 
         product.quantity += -quantity;
 
+        if (product.quantity < 0) {
+            alert("No more items available!");
+            return;
+        }
+
         sessionStorage.setItem("products", JSON.stringify(productsUpdated));
         sessionStorage.setItem("basket", JSON.stringify(basket));
         window.location.reload();
@@ -54,16 +59,13 @@ function Basket() {
     const removeProductFromBasket = (id) => {
 
         let basket = JSON.parse(sessionStorage.getItem("basket"));
-
         const productInBasket = basket.find((product) => {
             return product.id == id;
         })
-
         const productsUpdated = JSON.parse(sessionStorage.getItem("products"));
         const product = productsUpdated.find((product) => {
             return product.id === id;
         });
-
         product.quantity += productInBasket.quantityInBasket;
         basket = basket.filter(function (product) {
             return product.id !== id;//remove product from basket
@@ -72,98 +74,134 @@ function Basket() {
         sessionStorage.setItem("products", JSON.stringify(productsUpdated));
         sessionStorage.setItem("basket", JSON.stringify(basket));
         window.location.reload();
-
     }
 
-    const onCheckout = () => {
+    const onCheckout = (id) => {
 
-        // let productsToCheckout = JSON.parse(sessionStorage.getItem("basket"));
-        // console.log(productsToCheckout);
-
-        // let link;
-        // for (let i = 0; i < productsToCheckout.length; i++) {
-        //     if (productsToCheckout[i] !== true)
-        //         continue;
-        //     const productId = i;
-        //     const product = products.find((product) => {
-        //         return product.id === productId;
-        //     })
-        //     productsToCheckout.push(product);
-        // }
+        let basket = JSON.parse(sessionStorage.getItem("basket"));
+        const productInBasket = basket.find((product) => {
+            return product.id == id;
+        })
+        const productsUpdated = JSON.parse(sessionStorage.getItem("products"));
+        const product = productsUpdated.find((product) => {
+            return product.id === id;
+        });
 
         const headers = new Headers();
         headers.append("Content-type", "application/json");
 
-        fetch("http://localhost/Accenture_final_web_store/backend/Checkout.php", {
+        fetch("http://localhost/Accenture_final_web_store/backend/checkout.php", {
             method: "POST",
             headers: headers,
             body: JSON.stringify({ "basket": products })
-            // body: JSON.parse({ "basket": products })
-            // body: JSON.parse(sessionStorage.getItem("basket"))
-            // body: { "basket": products }
+
         })
             .then((response) => {
-                // response.json().then((body) => {
+                response.json().then((body) => {
 
-                // alert(body);
-                clearBasket();
+                    alert(body);
+                    clearBasket();
 
-                //         // const productsInit = products;
-                //         // setProductTable(productsInit);
-                //         // setState({ productsToCheckout: [] });
-                // })
+                    // const productsInit = products;
+                    // setProductTable(productsInit);
+                    // setState({ productsToCheckout: [] });
+                })
             })
     }
 
 
+    const calculateTotal = (id) => {
+        let total = 0;
+
+        // const productInBasket = basket.find((product) => {
+        //     return product.id == id;
+        // })
+
+        // const product = productsUpdated.find((product) => {
+        //     return product.id === id;
+        // });
+        let basket = JSON.parse(sessionStorage.getItem("basket"));
+
+        for (let i = 0; i < basket.length; i++) {
+            // console.log(basket.length);
+            // let productsInBasket = basket.find((product) => {
+            //     return product.id == id;
+            // });
+            console.log(id);
+            // for (let i = 0; i < productsInBasket.length; i++) {
+            //     let productInBasket =
+            //         console.log(productInBasket);
+            // }
+
+            // const productsUpdated = JSON.parse(sessionStorage.getItem("products"));
+
+            // const price = Number(productsUpdated.price);
+
+            // const quantity = Number(productsUpdated.quantityInBasket);
+            // let productValue = Number(price * quantity);
+
+            // total += productValue[i];
+        }
+        return total;
+    }
+
 
     return (
         <div className="container">
-            {products.map((product) => {
-                return (
-                    <div className="row" key={product.id}>
-                        <div className="col">
-                            {product.item}
+            <div>
+                {products.map((product) => {
+                    return (
+                        <div className="row" key={product.id}>
+                            <div className="col">
+                                {product.item}
+                            </div>
+                            <div className="col">
+                                {product.price}
+                            </div>
+                            <div className="col">
+                                <button className="btn">
+                                    <FontAwesomeIcon icon={faMinus}
+                                        onClick={() => {
+                                            changeQuantity(product.id, -1)
+                                        }}
+                                        className="plusminus click" /></button>
+                                {product.quantityInBasket}
+                                <button className="btn"><FontAwesomeIcon icon={faPlus}
+                                    className="plusminus click"
+                                    onClick={() => {
+                                        changeQuantity(product.id, 1)
+                                    }}
+                                /></button>
+                            </div>
+                            <div className="col">
+                                <a className="click" onClick={() => {
+                                    removeProductFromBasket(product.id);
+                                }}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </a>
+                            </div>
+
+                            <div className="col">
+                                subtotal:
+                            </div>
+                            <div className="col">
+                                {Number(product.quantityInBasket * product.price)}
+                            </div>
                         </div>
-                        <div className="col">
-                            {product.price}
-                        </div>
-                        {/* <div className="col">
-                            {product.quantityInBasket}
-                        </div> */}
-                        <div className="col">
-                            <FontAwesomeIcon icon={faMinus}
-                                onClick={() => {
-                                    changeQuantity(product.id, -1)
-                                }}
-                                className="plusminus click" />
-                            {product.quantityInBasket}
-                            <FontAwesomeIcon icon={faPlus}
-                                className="plusminus click"
-                                onClick={() => {
-                                    changeQuantity(product.id, 1)
-                                }}
-                            />
-                        </div>
-                        <div className="col">
-                            <a className="click" onClick={() => {
-                                removeProductFromBasket(product.id);
-                            }}>
-                                <FontAwesomeIcon icon={faTrash} />
-                            </a>
-                        </div>
+                    )
+                })}
 
 
-                        <div className="col">
-                            total:
-                        </div>
-                    </div>
-                )
-            })}
-            <button onClick={onCheckout} className="btn btn-success">Checkout</button>
+                <div>Total:  <i>Here will be total sum for order</i></div>
+                <div>
+                    {calculateTotal()}
+                </div>
 
-            <button onClick={clearBasket} className="btn btn-danger">Clear Basket</button>
+                <button onClick={onCheckout} className="btn btn-success">Checkout</button>
+                <button onClick={clearBasket} className="btn btn-danger">Clear Basket</button>
 
+
+            </div >
         </div>
     )
 }

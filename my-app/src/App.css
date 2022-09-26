@@ -42,3 +42,11 @@
   display: grid;
   grid-template-columns: repeat(3, 250px);
 }
+
+.click {
+  cursor: pointer;
+}
+
+.plusminus {
+  border-radius: 0.25em;
+}

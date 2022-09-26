@@ -3,7 +3,8 @@
         {
             "item": "HP1",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP2",

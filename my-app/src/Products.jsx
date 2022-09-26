@@ -33,8 +33,7 @@ class Products extends React.Component {
 
     componentDidMount() {
         this.props.productsInit(this);
-        this.setPageShown();
-
+        // this.setPageShown();
     }
 
     onChangeSave = () => {
@@ -171,12 +170,14 @@ class Products extends React.Component {
         const product = products.find((product) => {
             return product.id === id;
         })
+        // product.quantity--;
+
+
 
         let quantity = product.quantity;
-        quantity--
 
         if (productInBasket === undefined) {
-
+            quantity--;
             const item = product.item;
             const price = product.price;
 
@@ -184,14 +185,21 @@ class Products extends React.Component {
             basket.push(productInBasket);
         }
         else {
+            productInBasket.quantity--;
             productInBasket.quantityInBasket++;
-
+            quantity--;
         }
 
-        product.quantity = quantity;
 
-        // console.log(product.quantity);
 
+        if (quantity < 0) {
+            alert("No more items available!");
+            // product.quantity++;
+            // quantity++;
+            return;
+        }
+
+        product.quantity--;
         this.setState({
             products: this.state.products
         });

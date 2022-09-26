@@ -4,14 +4,18 @@
 include("product.php");
 
 // $basket =  $request->basket;
-$basket = json_decode(file_get_contents('php://input'));
+
+
+$input = json_decode(file_get_contents('php://input'));
+
+$basket = $input->basket;
 
 foreach ($basket as $product) :
-    Product::updateProducts($product);
+// Product::updateProducts($product);
+
+
 endforeach;
-// $productsToCheckout = "basket";
-// $productsToCheckout = json_decode(file_get_contents('php://input'));
-// $productsToCheckout = file_get_contents('php://input');
+echo json_encode($basket);
 
 // $productsToCheckout = (array)$productsToCheckout;
 // $products = [];
@@ -25,11 +29,6 @@ endforeach;
 // endforeach;
 
 echo json_encode("The products sucessfully updated!");
-
-// foreach ($basket as $product) :
-
-// $productsToCheckout = "basket";
-
 
     // public function updateProduct(mysqli $con = null)
     // {
