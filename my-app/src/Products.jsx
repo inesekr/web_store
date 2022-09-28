@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import Basket from './Basket';
+import HomePage from './pages/HomePage';
 
 class Products extends React.Component {
 
@@ -43,7 +44,6 @@ class Products extends React.Component {
         let productListUpdate = [];
         let link;
 
-        // if (productToUpdate.allNew) {
         if (this.props.allNew) {
             productListUpdate = this.state.products;
             link = "http://localhost/Accenture_final_web_store/backend/createProducts.php"
@@ -78,6 +78,7 @@ class Products extends React.Component {
                 self.setState({ productToUpdate: [] });
             })
         })
+
     }
 
     updateProduct = (id, fieldname, value) => {
@@ -177,9 +178,6 @@ class Products extends React.Component {
         const product = products.find((product) => {
             return product.id === id;
         })
-        // product.quantity--;
-
-
 
         let quantity = product.quantity;
 
@@ -196,8 +194,6 @@ class Products extends React.Component {
             productInBasket.quantityInBasket++;
             quantity--;
         }
-
-
 
         if (quantity < 0) {
             alert("No more items available!");
@@ -226,13 +222,14 @@ class Products extends React.Component {
 
                 {this.state.user.roleID === 1 &&
                     <div>
-                        <button className='btn' type='button' onClick={this.setEditable}>
+                        <button className='btn btn-outline-primary
+                        ' type='button' onClick={this.setEditable}>
                             Edit
                         </button>
-                        <button className='btn' onClick={() => { this.onChangeSave() }} type="button">
+                        <button className='btn btn-outline-success' onClick={() => { this.onChangeSave() }} type="button">
                             Save
                         </button>
-                        <button className='btn' onClick={this.onCancel} type="button">
+                        <button className='btn btn-outline-danger' onClick={this.onCancel} type="button">
                             Cancel
                         </button>
                     </div>
@@ -244,7 +241,6 @@ class Products extends React.Component {
                             <div className="card" key={product.id} onChange={
                                 (e) => this.onInputChange(e, product.id)}>
                                 {/* <div className="card-body p-4 text-center"> */}
-                                {/* <h5 className="font-weight-normal">{product.item}</h5> */}
                                 <div className="card-title">
                                     <div hidden={this.state.editable}>
                                         <h4>{product.item}</h4>
@@ -282,8 +278,6 @@ class Products extends React.Component {
                                     <img src={product.picturefile} width="200" height="200" />
                                 </div>
 
-                                {/* <img src={product.picturefile} width="200" height="200" /> */}
-
                                 <div className="space-before">
                                     <p></p>
                                 </div>
@@ -306,3 +300,4 @@ class Products extends React.Component {
 }
 
 export default Products;
+

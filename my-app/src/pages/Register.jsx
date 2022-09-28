@@ -94,11 +94,10 @@ function Register() {
                     </select>
                     <label className="form-label" htmlFor="userGroup">User role</label>
                 </div>
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary" >Register</button>
             </form>
         </div>
     )
-
 }
 
 export default Register;

@@ -11,7 +11,6 @@ function connectToDB(string &$err = null)
     if ($con->connect_error) {
         $err = $con->connect_error;
     }
-
     return $con;
 }
 

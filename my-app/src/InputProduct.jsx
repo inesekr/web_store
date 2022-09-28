@@ -45,6 +45,7 @@ class InputProduct extends React.Component {
     }
 
     render() {
+
         return (
 
             <form onSubmit={this.onSave}>
@@ -74,7 +75,5 @@ class InputProduct extends React.Component {
         );
     }
 }
-
-
 
 export default InputProduct;

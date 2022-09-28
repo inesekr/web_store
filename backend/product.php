@@ -110,6 +110,7 @@ class Product
         );
         $prepStament->execute();
     }
+
     public static function updateProducts(array $products, mysqli $con = null)
     {
         if ($con === null) :
@@ -189,6 +190,7 @@ class Product
             "</div>
             </div>";
     }
+
     public static function insertFromJSONFile(string $filename, mysqli $con)
     {
         $filecontent = file_get_contents($filename);

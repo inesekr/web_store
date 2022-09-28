@@ -20,23 +20,20 @@ class LoadPage extends React.Component {
 
     render() {
         return (
-
-            < div >
+            < div style={{ backgroundColor: 'lightyellow', paddingTop: "30px" }}>
                 {
                     this.state.user.roleID === 1 &&
-                    <div>
 
+                    <div>
                         <input type="file" value={this.state.filepath}
                             onChange={this.onFileNameChange}></input>
 
-                        <button type="button" className='btn' onClick={() => { this.setState({ load: true }) }}>Load</button>
+                        <button type="button" className='btn btn-primary' onClick={() => { this.setState({ load: true }) }}>Load</button>
 
                         {this.state.load === true && <ProductsFile filename={this.state.filename}></ProductsFile>}
                     </div>
-
                 }
             </div >
-
         )
     }
 }

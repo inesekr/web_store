@@ -11,7 +11,6 @@ function connectToDB(string &$err = null)
     if ($con->connect_error) {
         $err = $con->connect_error;
     }
-
     return $con;
 }
 
@@ -46,7 +45,7 @@ if (userExists($newUser->username, $con)) {
     $response = (object) array(
         "userCreated" => false,
         "username" => $newUser->username,
-        "error" => "User already exist"
+        "error" => "User already exists"
     );
 } else {
     createUser(

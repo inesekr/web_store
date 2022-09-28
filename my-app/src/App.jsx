@@ -39,9 +39,6 @@ class App extends React.Component {
             </Routes>
           </BrowserRouter>
 
-          {/* <NavBar openPage={this.openPage}></NavBar>
-        {this.state.pageDisplayed === "HomePage" && <HomePage />}
-        {this.state.pageDisplayed === "LoadPage" && <LoadPage />} */}
         </div>
       );
     }

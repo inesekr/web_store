@@ -4,12 +4,12 @@ import InputProduct from '../InputProduct';
 function HomePage() {
 
     return (
-        <div>
+        <div style={{ backgroundColor: 'lightyellow', paddingTop: "30px" }}>
 
             <InputProduct></InputProduct>
 
             <ProductsDB></ProductsDB>
-        </div>
+        </div >
     );
 }
 

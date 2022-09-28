@@ -9,8 +9,6 @@ import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 import { Basket } from "./Basket";
 
 
-
-// function NavBar({ openPage }) {
 function NavBar() {
 
     const [currentPage, setCurrentPage] = useState(window.location.pathname);

@@ -78,17 +78,7 @@ function Basket() {
 
     const onCheckout = (id) => {
 
-        // let basket = JSON.parse(sessionStorage.getItem("basket"));
-
-        // const product = basket.find((product) => {
-        //     return product.id === id;
-        // });
-
         const productsToUpdate = JSON.parse(sessionStorage.getItem("products"));
-
-        // const product = productsToUpdate.find((product) => {
-        //     return product.id === id;
-        // });
 
         const headers = new Headers();
         headers.append("Content-type", "application/json");
@@ -105,63 +95,9 @@ function Basket() {
                     clearBasket();
 
                     const productsInit = products;
-                    // setProductTable(productsInit);
-                    // setState({ productsToCheckout: [] });
                 })
             })
     }
-
-
-    function calculateTotal() {
-        let total = 0;
-
-        // const productInBasket = basket.find((product) => {
-        //     return product.id == id;
-        // })
-
-        // const product = productsUpdated.find((product) => {
-        //     return product.id === id;
-        // });
-
-        // let basket = JSON.parse(sessionStorage.getItem("basket"));
-        // console.log(basket);
-        // let subtotal = document.getElementsById("subtotal").value;
-        // console.log(subtotal);
-
-        // for (let i = 0; i < basket.length; i++) {
-
-        //     total += subtotal;
-        // }
-        return total;
-
-        // for (let i = 0; i < productsInBasket.length; i++) {
-        //     total += productsInBasket.value;
-        // }
-
-
-
-        // console.log(basket.length);
-        // let productsInBasket = basket.find((product) => {
-        //     return product.id == id;
-        // });
-        // console.log(id);
-        // for (let i = 0; i < productsInBasket.length; i++) {
-        //     let productInBasket =
-        //         console.log(productInBasket);
-        // }
-
-        // const productsUpdated = JSON.parse(sessionStorage.getItem("products"));
-
-        // const price = Number(productsUpdated.price);
-
-        // const quantity = Number(productsUpdated.quantityInBasket);
-        // let productValue = Number(price * quantity);
-
-        // total += productValue[i];
-
-    }
-
-
 
     return (
         <div className="container my-5">
@@ -201,22 +137,17 @@ function Basket() {
                             <div className="col">
                                 subtotal: EUR
                             </div>
-                            <div id="subtotal" className="col">
+                            <div className="col">
                                 {Number(product.quantityInBasket * product.price)}
                             </div>
                         </div>
                     )
                 })}
 
-
-                <div>Total:  <i>Here will be total sum for order</i></div>
-                <div>
-                    {calculateTotal()}
-                </div>
+                <div>Total: EUR {products.reduce((total, item) => total + (item.price * item.quantityInBasket), 0)}</div>
 
                 <button onClick={onCheckout} className="btn btn-success">Checkout</button>
                 <button onClick={clearBasket} className="btn btn-danger">Clear Basket</button>
-
 
             </div >
         </div>

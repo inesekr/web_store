@@ -10,7 +10,6 @@ function connectToDB(string &$err = null)
     if ($con->connect_error) {
         $err = $con->connect_error;
     }
-
     return $con;
 }
 
@@ -28,6 +27,5 @@ function getUserGroups(mysqli $con): array
         );
         array_push($usergroupsArr, $userGroupEntry);
     }
-
     return $usergroupsArr;
 }
