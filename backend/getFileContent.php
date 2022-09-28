@@ -16,4 +16,3 @@ switch ($fileExtension) {
         echo Product::getProductsFromCSV($filename);
         break;
 }
-echo $filename;

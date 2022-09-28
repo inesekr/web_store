@@ -50,7 +50,7 @@ class InputProduct extends React.Component {
             <form onSubmit={this.onSave}>
                 {
                     this.state.user.roleID === 1 &&
-                    <div className="form-group">
+                    <div className="form-group my-1">
                         <label htmlFor="item">Item</label>
                         <input id="item"
                             fieldname="item" value={this.state.item}

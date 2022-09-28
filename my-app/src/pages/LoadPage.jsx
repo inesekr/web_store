@@ -24,16 +24,16 @@ class LoadPage extends React.Component {
             < div >
                 {
                     this.state.user.roleID === 1 &&
-                    <form >
+                    <div>
 
                         <input type="file" value={this.state.filepath}
                             onChange={this.onFileNameChange}></input>
 
-                        <button className='btn' onClick={() => { this.setState({ load: true }) }}>Load</button>
+                        <button type="button" className='btn' onClick={() => { this.setState({ load: true }) }}>Load</button>
 
                         {this.state.load === true && <ProductsFile filename={this.state.filename}></ProductsFile>}
+                    </div>
 
-                    </form>
                 }
             </div >
 

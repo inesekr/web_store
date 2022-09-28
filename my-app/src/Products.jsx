@@ -37,8 +37,13 @@ class Products extends React.Component {
     }
 
     onChangeSave = () => {
+
+        const productToUpdate = JSON.parse(sessionStorage.getItem("products"));
+
         let productListUpdate = [];
         let link;
+
+        // if (productToUpdate.allNew) {
         if (this.props.allNew) {
             productListUpdate = this.state.products;
             link = "http://localhost/Accenture_final_web_store/backend/createProducts.php"
@@ -55,6 +60,9 @@ class Products extends React.Component {
             }
             link = "http://localhost/Accenture_final_web_store/backend/updateProduct.php";
         }
+
+        console.log(productListUpdate);
+
         const headers = new Headers();
         headers.append("Content-type", "application/json");
         const self = this;
@@ -94,7 +102,6 @@ class Products extends React.Component {
             products: initProducts,
             productsInit: productsLoad, numberOfPages: pagesNo
         }, this.setPageShown);
-
     }
 
     setEditable = () => {
@@ -231,7 +238,7 @@ class Products extends React.Component {
                     </div>
                 }
 
-                <div className="products">
+                <div className="products my-5 ">
                     {!(this.state.productsShown === undefined) && this.state.productsShown.map((product) => {
                         return (
                             <div className="card" key={product.id} onChange={
@@ -265,21 +272,29 @@ class Products extends React.Component {
                                         defaultValue={product.quantity}></input>
                                 </div>
 
-                                <div className="card-text">
+                                <div className="card-img">
                                     {/* <div hidden={!this.state.editable}>
                                         <p>{product.picturefile}</p>
                                     </div> */}
                                     <input hidden={!this.state.editable}
                                         fieldname="picturefile"
                                         defaultValue={product.picturefile}></input>
+                                    <img src={product.picturefile} width="200" height="200" />
                                 </div>
 
-                                <img src={product.picturefile} width="200" height="200" />
+                                {/* <img src={product.picturefile} width="200" height="200" /> */}
+
+                                <div className="space-before">
+                                    <p></p>
+                                </div>
 
                                 <div productid={product.id}>
-                                    <button className='btn' onClick={(productid) => this.onAddProduct(product.id)} type="button">
+                                    <button className='btn btn-secondary' onClick={(productid) => this.onAddProduct(product.id)} type="button">
                                         Add to Cart
                                     </button>
+                                </div>
+                                <div className="space">
+                                    <p></p>
                                 </div>
                             </div>
                         )

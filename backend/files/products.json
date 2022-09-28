@@ -9,47 +9,50 @@
         {
             "item": "HP2",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP3",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP4",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP5",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP6",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP7",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP8",
             "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         },
         {
             "item": "HP9",
             "price": "600",
-            "quantity": "3"
-        },
-        {
-            "item": "HP10",
-            "price": "600",
-            "quantity": "3"
+            "quantity": "3",
+            "picturefile": "http://localhost/Accenture_final_web_store/images/Fujitsu_LifeBook_A3510_15.6.jpg"
         }
     ]
 }

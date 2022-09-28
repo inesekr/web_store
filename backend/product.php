@@ -214,6 +214,17 @@ class Product
         );
     }
 
+    public static function convertBasketFromJSONToProduct($product): Product
+    {
+        return new Product(
+            $product->item,
+            $product->price,
+            $product->quantity,
+            $product->picturefile,
+            $product->id
+        );
+    }
+
     public function convertToJSON()
     {
         $product = new stdClass();

@@ -38,9 +38,41 @@
   }
 }
 
+body {
+  padding-top: 150px;
+  background-color: rgb(97, 212, 158);
+}
+
 .products {
+  margin: 2rem;
   display: grid;
-  grid-template-columns: repeat(3, 250px);
+  gap: 1rem;
+  /* grid-template-columns: repeat(4, 250px); */
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
+.card {
+  box-shadow: 0 0 2px 1px gray;
+  border-radius: radius;
+  min-width: 28rem;
+  display: flex;
+}
+
+.card-img {
+  width: 14rem;
+  height: 11rem;
+  object-fit: cover;
+}
+
+.home {
+  text-decoration: none;
+  padding-right: 25px;
+}
+
+.dropdown-link a {
+  background-color: #282c34;
+  color: rgb(232, 241, 237);
 }
 
 .click {
@@ -49,4 +81,18 @@
 
 .plusminus {
   border-radius: 0.25em;
+}
+
+.space-before {
+  height: 30px;
+}
+
+.mb-2 {
+  text-decoration: none;
+}
+
+@media screen and (min-width:600px) {
+  .products {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 16rem));
+  }
 }

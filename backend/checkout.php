@@ -1,48 +1,28 @@
 <?php
 
-// include("utils.php");
 include("product.php");
 
 // $basket =  $request->basket;
 
 
+// $basket = $input->basket;
+// echo $productsInput;
+
 $input = json_decode(file_get_contents('php://input'));
 
-$basket = $input->basket;
+$products = $input->products;
 
-foreach ($basket as $product) :
-// Product::updateProducts($product);
+$productsArr = [];
 
+foreach ($products as $product) :
+    $productObj = Product::convertFromJSONToProduct($product);
+    array_push($productsArr, $productObj);
 
+    Product::updateProducts($productsArr);
 endforeach;
-echo json_encode($basket);
 
-// $productsToCheckout = (array)$productsToCheckout;
-// $products = [];
-// foreach ($productsToCheckout as $productsToCheckout) :
-//     $productObj = Product::convertFromJSONToProduct($productsToCheckout);
-//     $productObj = Product::$productsToCheckout;
-//     array_push($products, $productObj);
-//     array_push($products, $productsToCheckout);
-//     Product::updateProducts($productsToCheckout);
-// Product::where("id", $product->id)->update(["quantity" => $product->quantity]);
-// endforeach;
+// Product::updateProducts($productsArr);
+
+// echo json_encode($products);
 
 echo json_encode("The products sucessfully updated!");
-
-    // public function updateProduct(mysqli $con = null)
-    // {
-    //     $prepStament = $con->prepare("UPDATE products SET item=?,
-    //     price=?,
-    //     quantity=?,
-    //     picturefile=? WHERE id=?");
-    //     $prepStament->bind_param(
-    //         "sssss",
-    //         $this->item,
-    //         $this->price,
-    //         $this->quantity,
-    //         $this->picturefile,
-    //         $this->id
-    //     );
-    //     $prepStament->execute();
-    // }
