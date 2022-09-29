@@ -4,7 +4,7 @@ import InputProduct from '../InputProduct';
 function HomePage() {
 
     return (
-        <div style={{ backgroundColor: 'lightyellow', paddingTop: "30px" }}>
+        <div style={{ backgroundColor: 'lightgoldenrodyellow', paddingTop: "30px" }}>
 
             <InputProduct></InputProduct>
 

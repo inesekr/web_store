@@ -38,12 +38,12 @@
   }
 }
 
-body {
-  padding-top: 80px;
-}
+/* body {
+  padding-top: 10px;
+} */
 
 .products {
-  margin: 2rem;
+  margin: 1rem;
   display: grid;
   gap: 1rem;
   /* grid-template-columns: repeat(4, 250px); */
@@ -67,7 +67,7 @@ body {
 }
 
 .home {
-  text-decoration: none !important;
+  text-decoration-line: none !important;
   padding-right: 25px;
 }
 

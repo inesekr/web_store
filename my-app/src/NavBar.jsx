@@ -8,6 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 import { Basket } from "./Basket";
 
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function NavBar() {
 
@@ -19,87 +23,68 @@ function NavBar() {
     }
 
     return (
-        <>
-            <nav className="navbar navbar-nav fixed-top navbar-expand-md navbar-light bg-dark">
-                {/* <div className="collapse navbar-collapse"> */}
-                <div className="container">
-
-
-                    {/* <a className="navbar-brand" href="/">MyShop</a> */}
-
-
-                    <ul className="navbar-nav mr-auto navbar-left">
-
-                        <li
-                            className="home text-uppercase text-dark btn-light">
-                            <a className={currentPage === "/" ? "nav-item nav-item-active" : "nav-item"}>
-                                <Link to="/" onClick={() => { setCurrentPage("/") }}>Home</Link>
-                                {/* <button className="btn" onClick={() => openPage("HomePage")}>Home</button> */}
-                            </a>
-                        </li>
-
-                        {/* <li className={currentPage === "/" ? "nav-item nav-item-active" : "nav-item"}>
+        <>        <Navbar bg="dark" expand="sm">
+            <Container>
+                {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <div style={{ paddingLeft: "20px", paddingTop: "6px" }} className={currentPage === "/" ? "nav-item nav-item-active" : "nav-item"}>
                             <Link to="/" onClick={() => { setCurrentPage("/") }}>Home</Link>
-                            {/* <button className="btn" onClick={() => openPage("HomePage")}>Home</button> */}
-                        {/*} </li> */}
-
-                        <li
-                            className="btn-light">
-                            <li className={currentPage === "/loadPage" ? "nav-item nav-item-active" : "nav-item"}>
-                                {/* {this.state.user.roleID === 1 && */}
-                                <Link to="/loadPage" onClick={() => { setCurrentPage("/loadPage") }}>Load Page</Link>
-                            </li>
-                        </li>
-                        {/* <div className="nav-item">
-                        JSON.parse(sessionStorage.getItem("user")).roleID === 3 &&
-                                <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}>Basket</Link>
-                        </div> */}
-
-                    </ul>
-
-                    <ul className="nav navbar-nav nav-list navbar-right mr-auto">
-
-                        <div className="mb-2">
-                            <Dropdown as={ButtonGroup} size="lg">
-                                <Button
-                                    className=" btn-dark"
-                                >
-                                    {JSON.parse(sessionStorage.getItem("user")).username}
-
-                                    <Dropdown.Toggle
-                                        split
-                                        variant={JSON.parse(sessionStorage.getItem("user")).username}
-                                        id="dropdown-split-basic"
-                                    />
-                                    <Dropdown.Menu className="dropdown-link">
-                                        <Dropdown.Item eventKey="logout" onClick={onLogout}>
-                                            Logout
-                                        </Dropdown.Item>
-                                    </Dropdown.Menu>
-
-                                </Button>
-
-                            </Dropdown>
                         </div>
+                        <div style={{ paddingLeft: "20px", paddingTop: "6px" }} className={currentPage === "/loadPage" ? "nav-item nav-item-active" : "nav-item"}>
+                            <Link to="/loadPage" onClick={() => { setCurrentPage("/loadPage") }}>LoadPage</Link>
+                        </div>
+                    </Nav>
+                    <Nav>
 
-                        <Button
-                            className="mb-2 btn-dark">
+                        <Dropdown size="lg" style={{ color: "white", fontSize: "20px" }}
+                            className="btn btn-dark"
+                        >
+                            {JSON.parse(sessionStorage.getItem("user")).username}
+
+                            <Dropdown.Toggle
+                                split
+                                variant={JSON.parse(sessionStorage.getItem("user")).username}
+                                id="dropdown-split-basic"
+                            />
+                            <Dropdown.Menu className="dropdown-link">
+                                <Dropdown.Item eventKey="logout" onClick={onLogout}>
+                                    Logout
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+
+                        </Dropdown>
+
+                        <Button size="lg" style={{ paddingLeft: "12px" }}
+                            className="btn btn-secondary ">
                             <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}><FontAwesomeIcon icon={faBasketShopping} /></Link>
                         </Button>
 
-                        {/* <button className="nav-item">
-                        <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}><FontAwesomeIcon icon={faBasketShopping} /></Link>
-                    </button> */}
-
-                    </ul>
-
-                </div>
-
-
-            </nav>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar >
             <Outlet></Outlet>
+
         </>
     );
 }
 
 export default NavBar;
+
+{/* <li className={currentPage === "/" ? "nav-item nav-item-active" : "nav-item"}>
+                            <Link to="/" onClick={() => { setCurrentPage("/") }}>Home</Link>
+                            {/* <button className="btn" onClick={() => openPage("HomePage")}>Home</button> */}
+{/*} </li> */ }
+
+
+{/* <div className="nav-item">
+                        JSON.parse(sessionStorage.getItem("user")).roleID === 3 &&
+                                <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}>Basket</Link>
+                        </div> */}
+
+{/* <button className="nav-item">
+                        <Link to="/basket" onClick={() => { setCurrentPage("/basket") }}><FontAwesomeIcon icon={faBasketShopping} /></Link>
+                    </button> */}
+

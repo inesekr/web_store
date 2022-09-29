@@ -20,7 +20,7 @@ class LoadPage extends React.Component {
 
     render() {
         return (
-            < div style={{ backgroundColor: 'lightyellow', paddingTop: "30px" }}>
+            < div style={{ backgroundColor: 'lightgray', paddingTop: "30px", paddingBottom: "50px" }}>
                 {
                     this.state.user.roleID === 1 &&
 

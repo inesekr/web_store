@@ -17,9 +17,9 @@ function connectToDB(string &$err = null)
 function createUser(string $uname, string $password, string $role, mysqli $con)
 {
     $prepStament = $con->prepare("INSERT INTO users (username,`password`,`role`) VALUES
-    (?,?,?)");
+    (?,?,3)");
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $prepStament->bind_param("sss", $uname, $passwordHash, $role);
+    $prepStament->bind_param("ss", $uname, $passwordHash);
     $prepStament->execute();
 }
 

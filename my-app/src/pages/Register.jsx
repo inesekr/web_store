@@ -82,7 +82,7 @@ function Register() {
                     <label className="form-label" htmlFor="passwordrep">Repeat Password</label>
                 </div>
 
-                <div className="form-outline mb-4">
+                <div hidden className="form-outline mb-4">
 
                     <select id="userGroup" onChange={(event) => {
                         setUserGroup(event.target.value)
@@ -94,6 +94,7 @@ function Register() {
                     </select>
                     <label className="form-label" htmlFor="userGroup">User role</label>
                 </div>
+
                 <button className="btn btn-primary" >Register</button>
             </form>
         </div>

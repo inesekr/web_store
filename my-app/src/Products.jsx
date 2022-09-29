@@ -21,8 +21,8 @@ class Products extends React.Component {
     }
 
     setPageShown = () => {
-        const startPos = (this.state.currentPage - 1) * 9;
-        let endPosit = startPos + 9;
+        const startPos = (this.state.currentPage - 1) * 12;
+        let endPosit = startPos + 12;
         if (endPosit + 1 > this.state.products.length)
             endPosit = this.state.products.length;
 
@@ -98,7 +98,7 @@ class Products extends React.Component {
         productsLoad.map((obj) => {
             initProducts.push(Object.assign({}, obj));
         })
-        const pagesNo = Math.ceil(productsLoad.length / 10);
+        const pagesNo = Math.ceil(productsLoad.length / 12);
         this.setState({
             products: initProducts,
             productsInit: productsLoad, numberOfPages: pagesNo
@@ -124,6 +124,7 @@ class Products extends React.Component {
     switchPageEvent = (event) => {
         this.switchPage(
             Number(event.target.innerHTML));
+
     }
 
     switchPage = (pageNo) => {
@@ -214,7 +215,7 @@ class Products extends React.Component {
     render() {
         return (
             <form method='POST'>
-                <nav aria-label="Page navigation example">
+                <nav style={{ paddingLeft: "100px", paddingTop: "20px" }} aria-label="Page navigation example">
                     <ul className="pagination">
                         {this.generatePageItems()}
                     </ul>
